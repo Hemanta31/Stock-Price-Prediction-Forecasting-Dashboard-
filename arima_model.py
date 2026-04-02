@@ -1,7 +1,7 @@
 """
 ARIMA Stock Price Forecasting Model
 =====================================
-Author: Your Name
+Author: Hemanta sethy
 Description: Trains an ARIMA model on historical stock data
              and forecasts future closing prices.
 """
@@ -23,12 +23,12 @@ import math
 def check_stationarity(series: pd.Series) -> None:
     """Run Augmented Dickey-Fuller test and print result."""
     result = adfuller(series.dropna())
-    print(f"\n📊 ADF Statistic : {result[0]:.4f}")
+    print(f"\n ADF Statistic : {result[0]:.4f}")
     print(f"   p-value       : {result[1]:.4f}")
     if result[1] < 0.05:
-        print("   ✅ Series is STATIONARY (good for ARIMA)")
+        print("    Series is STATIONARY (good for ARIMA)")
     else:
-        print("   ⚠️  Series is NOT stationary — differencing required")
+        print("     Series is NOT stationary — differencing required")
 
 
 def calculate_metrics(actual: np.ndarray, predicted: np.ndarray) -> dict:
@@ -65,7 +65,7 @@ def run_arima(filepath: str, ticker: str = "Stock",
 
     # 1. Load data
     series = load_data(filepath)
-    print(f"\n📅 Data range  : {series.index[0].date()} → {series.index[-1].date()}")
+    print(f"\n Data range  : {series.index[0].date()} → {series.index[-1].date()}")
     print(f"   Total rows  : {len(series)}")
 
     # 2. Stationarity check
@@ -74,10 +74,10 @@ def run_arima(filepath: str, ticker: str = "Stock",
     # 3. Train / test split
     split = int(len(series) * 0.80)
     train, test = series[:split], series[split:]
-    print(f"\n📂 Train size  : {len(train)}  |  Test size: {len(test)}")
+    print(f"\n  Train size  : {len(train)}  |  Test size: {len(test)}")
 
     # 4. Fit ARIMA
-    print(f"\n🔧 Fitting ARIMA{order}...")
+    print(f"\n  Fitting ARIMA{order}...")
     model  = ARIMA(train, order=order)
     fitted = model.fit()
 
@@ -95,7 +95,7 @@ def run_arima(filepath: str, ticker: str = "Stock",
 
     # 5. Metrics
     metrics = calculate_metrics(actual, predictions)
-    print(f"\n📈 Model Performance:")
+    print(f"\n  Model Performance:")
     print(f"   RMSE : {metrics['RMSE']}")
     print(f"   MAE  : {metrics['MAE']}")
     print(f"   MAPE : {metrics['MAPE']}%")
@@ -135,7 +135,7 @@ def run_arima(filepath: str, ticker: str = "Stock",
     plt.tight_layout()
     plt.savefig(f"arima_{ticker.lower().replace(' ', '_')}.png", dpi=150)
     plt.show()
-    print(f"\n✅ Plot saved as arima_{ticker.lower().replace(' ', '_')}.png")
+    print(f"\n  Plot saved as arima_{ticker.lower().replace(' ', '_')}.png")
 
     return metrics, forecast_df
 
