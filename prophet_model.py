@@ -1,7 +1,7 @@
 """
 Facebook Prophet Stock Price Forecasting Model
 ================================================
-Author: Your Name
+Author: Hemanta sethy
 Description: Uses FB Prophet to forecast stock closing prices
              with seasonality, trend, and confidence intervals.
 """
@@ -58,17 +58,17 @@ def run_prophet(filepath: str, ticker: str = "Stock",
 
     # 1. Load data
     df = load_and_prepare(filepath)
-    print(f"\n📅 Data range  : {df['ds'].min().date()} → {df['ds'].max().date()}")
+    print(f"\n  Data range  : {df['ds'].min().date()} → {df['ds'].max().date()}")
     print(f"   Total rows  : {len(df)}")
 
     # 2. Train / test split
     split      = int(len(df) * 0.80)
     train_df   = df[:split].reset_index(drop=True)
     test_df    = df[split:].reset_index(drop=True)
-    print(f"\n📂 Train size  : {len(train_df)}  |  Test size: {len(test_df)}")
+    print(f"\n  Train size  : {len(train_df)}  |  Test size: {len(test_df)}")
 
     # 3. Fit Prophet
-    print("\n🔧 Fitting Prophet model...")
+    print("\n  Fitting Prophet model...")
     model = Prophet(
         seasonality_mode=seasonality_mode,
         yearly_seasonality=True,
@@ -90,13 +90,13 @@ def run_prophet(filepath: str, ticker: str = "Stock",
 
     # 4. Metrics
     metrics = calculate_metrics(actual, predicted)
-    print(f"\n📈 Model Performance:")
+    print(f"\n  Model Performance:")
     print(f"   RMSE : {metrics['RMSE']}")
     print(f"   MAE  : {metrics['MAE']}")
     print(f"   MAPE : {metrics['MAPE']}%")
 
     # 5. Future forecast (full data)
-    print(f"\n🔧 Refitting on full data for {forecast_days}-day forecast...")
+    print(f"\n  Refitting on full data for {forecast_days}-day forecast...")
     model_full = Prophet(
         seasonality_mode=seasonality_mode,
         yearly_seasonality=True,
@@ -143,7 +143,7 @@ def run_prophet(filepath: str, ticker: str = "Stock",
     plt.tight_layout()
     plt.savefig(f"prophet_{ticker.lower().replace(' ', '_')}.png", dpi=150)
     plt.show()
-    print(f"\n✅ Plot saved as prophet_{ticker.lower().replace(' ', '_')}.png")
+    print(f"\n  Plot saved as prophet_{ticker.lower().replace(' ', '_')}.png")
 
     # Prophet component plot
     fig2 = model_full.plot_components(forecast)
