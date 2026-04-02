@@ -1,7 +1,7 @@
 """
 Stock Price Forecasting Dashboard
 ====================================
-Author: Your Name
+Author: Hemanta sethy
 Run:  streamlit run app/dashboard.py
 """
 
@@ -28,7 +28,7 @@ st.set_page_config(
 )
 
 # ── Title ────────────────────────────────────────────────────────
-st.title("📈 Stock Price Prediction & Forecasting Dashboard")
+st.title(" Stock Price Prediction & Forecasting Dashboard")
 st.markdown("*Finance & Stock Market Analysis Project — Data Analyst Portfolio*")
 st.divider()
 
@@ -52,7 +52,7 @@ selected_period = st.sidebar.selectbox("Historical Period", list(period_map.keys
 model_choice    = st.sidebar.radio("Forecasting Model", ["ARIMA", "Prophet", "Both"])
 forecast_days   = st.sidebar.slider("Forecast Days", min_value=7, max_value=90, value=30, step=7)
 st.sidebar.divider()
-st.sidebar.info("📌 Data sourced from Yahoo Finance via yfinance")
+st.sidebar.info(" Data sourced from Yahoo Finance via yfinance")
 
 
 # ── Helper Functions ─────────────────────────────────────────────
@@ -136,7 +136,7 @@ with st.spinner(f"Fetching data for {selected_name}..."):
     df = fetch_data(ticker, period_map[selected_period])
 
 if df.empty:
-    st.error("❌ No data returned. Check the ticker or try another stock.")
+    st.error("  No data returned. Check the ticker or try another stock.")
     st.stop()
 
 close = df["Close"].astype(float)
@@ -159,7 +159,7 @@ col5.metric("Avg Volume",     f"{vol_avg:,}")
 st.divider()
 
 # ── Price Chart ──────────────────────────────────────────────────
-st.subheader("📊 Historical Price Chart")
+st.subheader("  Historical Price Chart")
 tab1, tab2, tab3 = st.tabs(["Candlestick", "Line Chart", "Volume"])
 
 with tab1:
@@ -193,14 +193,14 @@ with tab3:
 st.divider()
 
 # ── Forecasting ──────────────────────────────────────────────────
-st.subheader(f"🔮 {forecast_days}-Day Price Forecast")
+st.subheader(f"  {forecast_days}-Day Price Forecast")
 
 series = close.reset_index(drop=True)
 series.index = pd.to_datetime(df["Date"].values)
 
 # ── ARIMA ────────────────────────────────────────────────────────
 if model_choice in ("ARIMA", "Both"):
-    st.markdown("#### 📌 ARIMA Model")
+    st.markdown("####   ARIMA Model")
     with st.spinner("Running ARIMA forecast..."):
         try:
             preds, test_set, rmse, mae, mape, arima_fc = run_arima_forecast(series, forecast_days)
@@ -228,7 +228,7 @@ if model_choice in ("ARIMA", "Both"):
 
 # ── Prophet ──────────────────────────────────────────────────────
 if model_choice in ("Prophet", "Both"):
-    st.markdown("#### 📌 Facebook Prophet Model")
+    st.markdown("####   Facebook Prophet Model")
     with st.spinner("Running Prophet forecast..."):
         try:
             p_preds, p_test, p_rmse, p_mae, p_mape, p_fc, p_model, full_fc = run_prophet_forecast(df, forecast_days)
@@ -257,7 +257,7 @@ if model_choice in ("Prophet", "Both"):
             st.plotly_chart(fig, use_container_width=True)
 
             # Components
-            with st.expander("📊 View Prophet Components (Trend & Seasonality)"):
+            with st.expander("  View Prophet Components (Trend & Seasonality)"):
                 comp_fig = p_model.plot_components(full_fc)
                 st.pyplot(comp_fig)
 
@@ -267,7 +267,7 @@ if model_choice in ("Prophet", "Both"):
 st.divider()
 
 # ── Raw Data Table ───────────────────────────────────────────────
-with st.expander("📄 View Raw Data"):
+with st.expander("  View Raw Data"):
     st.dataframe(df.tail(50), use_container_width=True)
     csv = df.to_csv(index=False).encode("utf-8")
     st.download_button("⬇️ Download CSV", csv, f"{ticker}_data.csv", "text/csv")
