@@ -21,17 +21,17 @@ and displays results through an interactive web dashboard.
 stock_price_prediction/
 │
 ├── data/
-│   └── fetch_data.py          # Download stock data using yfinance
+│   └── fetch_data.py          
 │
 ├── models/
-│   ├── arima_model.py          # ARIMA forecasting model
-│   └── prophet_model.py        # Facebook Prophet forecasting model
+│   ├── arima_model.py          
+│   └── prophet_model.py        
 │
 ├── app/
-│   └── dashboard.py            # Streamlit interactive dashboard
+│   └── dashboard.py            
 │
 ├── notebooks/
-│   └── EDA_and_Forecasting.ipynb  # Jupyter notebook (EDA + models)
+│   └── EDA_and_Forecasting.ipynb  
 │
 ├── requirements.txt
 └── README.md
