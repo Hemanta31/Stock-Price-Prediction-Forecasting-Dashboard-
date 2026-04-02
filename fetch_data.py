@@ -1,7 +1,7 @@
 """
 Stock Price Data Collection Script
 ===================================
-Author: Your Name
+Author: Hemanta sethy
 Description: Downloads historical stock data using yfinance
 """
 
@@ -41,14 +41,14 @@ def save_stock(df: pd.DataFrame, ticker: str) -> None:
 
 
 def main():
-    print("\n📥 Fetching stock data from Yahoo Finance...\n")
+    print("\n Fetching stock data from Yahoo Finance...\n")
     for ticker, name in STOCKS.items():
         try:
             df = download_stock(ticker, name)
             save_stock(df, ticker)
         except Exception as e:
             print(f"  ERROR for {ticker}: {e}")
-    print("\n✅ All downloads complete!\n")
+    print("\n  All downloads complete!\n")
 
 
 if __name__ == "__main__":
