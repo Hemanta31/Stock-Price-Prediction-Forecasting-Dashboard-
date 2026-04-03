@@ -151,20 +151,15 @@ Open your browser at `http://localhost:8501`
 - [Statsmodels ARIMA](https://www.statsmodels.org/stable/generated/statsmodels.tsa.arima.model.ARIMA.html)
 - [Streamlit Docs](https://docs.streamlit.io/)
 
----
-
-## 🪪 License
-
-This project is licensed under the MIT License.
 
 ---
 
 ## 🙋 Author
 
-**Your Name**
-- 📧 your.email@gmail.com
-- 💼 [LinkedIn](https://linkedin.com/in/yourprofile)
-- 🐙 [GitHub](https://github.com/yourusername)
+Hemanta sethy
+- 📧 hemantsethy2402@gmail.com
+- 💼 [LinkedIn](www.linkedin.com/in/hemanta-kumar-sethy)
+
 
 ---
 
